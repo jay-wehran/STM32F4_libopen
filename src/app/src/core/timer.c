@@ -1,6 +1,6 @@
 /*  pwm on the timer peripheral */
 
-#include "core/timer.h"
+#include "app/inc/core/timer.h"
 #include <libopencm3/stm32/timer.h>
 #include <libopencm3/stm32/rcc.h>
 

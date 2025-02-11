@@ -1,4 +1,4 @@
-#include "core/system.h"
+#include "app/inc/core/system.h"
 
 #include <libopencm3/cm3/systick.h>
 #include <libopencm3/cm3/vector.h>

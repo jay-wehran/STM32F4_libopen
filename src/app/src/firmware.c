@@ -1,7 +1,7 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 
-#include "core/system.h"
+#include "app/inc/core/system.h"
 
 #define LED_PORT        (GPIOG)
 #define LED_PIN         (GPIO13)
