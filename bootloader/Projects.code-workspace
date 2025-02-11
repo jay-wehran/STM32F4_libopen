@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "STM32F4_libopen",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"compare": "c",
+			"cstdint": "c",
+			"vector.h": "c",
+			"nvic.h": "c",
+			"rcc.h": "c"
+		}
+	}
+}
