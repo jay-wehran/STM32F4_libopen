@@ -4,7 +4,8 @@ This repository will contain the code for some bare metal experimentation I am d
 
 Thus far, I have gotten a blinky to function, and currently working on a bootloader
 
-<h1> Checklist
- - Blinky
- - Bootloader
- - UART Driver
+<h5> Checklist
+ 
+ - Blinky ✔️
+ - Bootloader ✔️
+ - UART Driver 🔧
