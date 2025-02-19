@@ -12,9 +12,8 @@
 #define LED_PIN         (GPIO13)
 
 #define UART_PORT       (GPIOA)
-#define RX_PIN          (GPIO3)
-#define TX_PIN          (GPIO2)
-
+#define TX_PIN          (GPIO9)
+#define RX_PIN          (GPIO10)
 
 //! vector setup, permitting bootloader
 // static void vector_setup(void) {
@@ -46,17 +45,19 @@ int main(void) {
     uart_setup();
 
 
-    uint64_t start_time = system_get_ticks();
+
+    // uint64_t start_time = system_get_ticks();
 
     while (1) {
-        if(system_get_ticks() - start_time >= 1000){
-            gpio_toggle(LED_PORT, LED_PIN);
-            start_time = system_get_ticks();
-        }
+        // if(system_get_ticks() - start_time >= 1000){
+        //     gpio_toggle(LED_PORT, LED_PIN);
+        //     start_time = system_get_ticks();
+        // }
+
         
-        if (uart_data_available()) {
+        while (uart_data_available()) {
             uint8_t data = uart_read_byte();
-            uart_write_byte(data + 1);  
+            uart_write_byte(data);  
         }
 
         // more useful work
