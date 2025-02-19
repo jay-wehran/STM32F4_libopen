@@ -2,11 +2,11 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/usart.h>
 
-#include "../inc/uart.h"
+#include "uart/inc/uart.h"
 
 #define BAUD_RATE (115200)
 
-static uint8_t data_buffer = 0;
+static uint8_t data_buffer = 0U;
 static bool data_available = false;
 
 void usart2_isr(void) {
@@ -65,6 +65,5 @@ uint8_t uart_read_byte(void){
 }
 
 bool uart_data_available(void){
-    return uart_data_available;
-
+    return data_available;
 }
