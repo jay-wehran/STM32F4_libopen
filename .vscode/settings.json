@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "usart.h": "c",
-        "usart_common_f24.h": "c"
+        "usart_common_f24.h": "c",
+        "comms.h": "c"
     }
 }
