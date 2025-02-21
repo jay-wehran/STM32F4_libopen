@@ -2,6 +2,7 @@
     "files.associations": {
         "usart.h": "c",
         "usart_common_f24.h": "c",
-        "comms.h": "c"
+        "comms.h": "c",
+        "ring-buffer.h": "c"
     }
 }

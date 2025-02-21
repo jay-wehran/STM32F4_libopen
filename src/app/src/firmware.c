@@ -35,6 +35,19 @@ static void gpio_setup(void) {
 
 }
 
+static void store_byte(uint8_t* buffer, uint8_t data, uint8_t* iterator) {
+    buffer[*iterator] = data;
+    (*iterator)++;
+}
+
+static void clear_buffer(uint8_t* buffer, uint8_t* iterator) {
+    for (uint8_t i = 0; i <= *iterator; i++) {
+        buffer[i] = 0;
+    }
+
+    (*iterator) = 0;
+}
+
 
 int main(void) {
 
@@ -43,6 +56,11 @@ int main(void) {
     system_setup();
     gpio_setup();
     uart_setup();
+
+    uint8_t iterator = 0;
+ 
+    
+     uint8_t buffer[3] = {0,0,0};
 
 
 
@@ -55,9 +73,20 @@ int main(void) {
         // }
 
         
+
+        
         while (uart_data_available()) {
+            // if the character 5 is read, stop and put previous read bytes into buffer
             uint8_t data = uart_read_byte();
-            uart_write_byte(data);  
+            if (data == '5' && buffer[0] == 'o' && buffer[1] == 'n'){
+                gpio_toggle(LED_PORT, LED_PIN);
+                uart_write((uint8_t*) "On!\n", 3);
+                clear_buffer(buffer,&iterator);
+            } else if (data == '5' && buffer[0] == 'o' && buffer[1] == 'f' && buffer[2] == 'f') {
+                gpio_clear(LED_PORT, LED_PIN);
+            }
+            store_byte(buffer,data,&iterator);
+             
         }
 
         // more useful work

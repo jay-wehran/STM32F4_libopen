@@ -78,3 +78,6 @@ uint8_t uart_read_byte(void){
 bool uart_data_available(void){
     return !ring_buffer_empty(&rb);
 }
+
+
+
