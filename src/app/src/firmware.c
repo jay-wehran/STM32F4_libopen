@@ -45,7 +45,7 @@ static void clear_buffer(uint8_t* buffer, uint8_t* iterator) {
         buffer[i] = 0;
     }
 
-    (*iterator) = 0;
+    *iterator = 0;
 }
 
 
@@ -60,13 +60,18 @@ int main(void) {
     uint8_t iterator = 0;
  
     
-     uint8_t buffer[3] = {0,0,0};
+     uint8_t buffer[128] = {};
+
+     uart_write((uint8_t*)"0 to reset \n", 11);
+
+
 
 
 
     // uint64_t start_time = system_get_ticks();
 
     while (1) {
+
         // if(system_get_ticks() - start_time >= 1000){
         //     gpio_toggle(LED_PORT, LED_PIN);
         //     start_time = system_get_ticks();
@@ -74,22 +79,25 @@ int main(void) {
 
         
 
-        
         while (uart_data_available()) {
-            // if the character 5 is read, stop and put previous read bytes into buffer
             uint8_t data = uart_read_byte();
-            if (data == '5' && buffer[0] == 'o' && buffer[1] == 'n'){
-                gpio_toggle(LED_PORT, LED_PIN);
-                uart_write((uint8_t*) "On!\n", 3);
-                clear_buffer(buffer,&iterator);
-            } else if (data == '5' && buffer[0] == 'o' && buffer[1] == 'f' && buffer[2] == 'f') {
-                gpio_clear(LED_PORT, LED_PIN);
+            if (data != '5') {
+                store_byte(buffer,data,&iterator);
             }
-            store_byte(buffer,data,&iterator);
-             
+            if (data == '5' && buffer[0] == 'o' && buffer[1] == 'n') {
+                uart_write((uint8_t*) "On!\n", 3);
+                gpio_toggle(LED_PORT, LED_PIN);
+                clear_buffer(buffer, &iterator);
+            }
+            if (data == '5' && buffer[0] == 'o' && buffer[1] == 'f' && buffer[2] == 'f'){
+                uart_write((uint8_t*) "Off!\n", 4);
+                gpio_clear(LED_PORT, LED_PIN);
+                clear_buffer(buffer, &iterator);
+            }
+            if (data == '0'){
+                clear_buffer(buffer, &iterator);
+            }
         }
-
-        // more useful work
         
     }
 
