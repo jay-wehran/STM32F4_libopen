@@ -4,6 +4,6 @@ This repository will contain the code for some bare metal experimentation I am d
 
 <h5> Checklist
  
- - Blinky ✔️
  - Bootloader ✔️
- - UART Driver 🔧
+ - Serial Monitor LED toggle using UART ✔️
+ - MEMS gyro using SPI (in progress)
